@@ -4,9 +4,7 @@ import './App.css';
 
 function App() {
 
-  let posts = "강남 고기 맛집";
-  
-  const [gangnam, setGangnam] = useState("강남")
+  const [gangnam, setGangnam] = useState(["강남", "대치", "선릉"]);
   const [gandong, setGandong] = useState("강동")
   const [gangbok, setgangbok] = useState("강북")
   const [count, setCount] = useState(0)
@@ -15,8 +13,11 @@ function App() {
   const ClickHandler = () => {
     setCount(count + 1)
   }
-  const ClickHandler2 = () => {
-    setCount(count - 1)
+
+  const changHandler = () => {
+    let newArray = [...gangnam];
+    newArray[0] = "잠실"
+    setGangnam(newArray);
   }
 
   return (
@@ -24,8 +25,9 @@ function App() {
       <div className="balck-nav">
         <div>개발 Blog</div>
       </div>
+      <button onClick={changHandler}>버튼</button>
       <div className="list">
-        <h3>{ gangnam } <span onClick={ClickHandler}>👍</span> {count}<span onClick={ClickHandler2}>😂</span></h3>
+        <h3>{ gangnam } <span onClick={ClickHandler}>👍</span> {count}</h3>
         <p>2월 17일 발행</p>
         <hr/>
       </div>
