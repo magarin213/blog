@@ -15,6 +15,9 @@ function App() {
   const ClickHandler = () => {
     setCount(count + 1)
   }
+  const ClickHandler2 = () => {
+    setCount(count - 1)
+  }
 
   return (
     <div className="App">
@@ -22,7 +25,7 @@ function App() {
         <div>개발 Blog</div>
       </div>
       <div className="list">
-        <h3>{ gangnam } <span onClick={ClickHandler}>👍</span> {count}</h3>
+        <h3>{ gangnam } <span onClick={ClickHandler}>👍</span> {count}<span onClick={ClickHandler2}>😂</span></h3>
         <p>2월 17일 발행</p>
         <hr/>
       </div>
