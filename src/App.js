@@ -4,11 +4,11 @@ import './App.css';
 
 function App() {
 
-  const [gangnam, setGangnam] = useState(["강남", "대치", "선릉"]);
-  const [gandong, setGandong] = useState("강동")
-  const [gangbok, setgangbok] = useState("강북")
+  const [gangnam, setGangnam] = useState(['남자코트 추천', '강남 우동맛집', '파이썬독학']);
+
   const [count, setCount] = useState(0)
   const [modal, setModal] = useState(false)
+  const [clickName, setclickName] = useState(0)
 
   const ClickHandler = () => {
     setCount(count + 1)
@@ -27,39 +27,41 @@ function App() {
       <div className="balck-nav">
         <div>개발 Blog</div>
       </div>
-      <button onClick={changHandler}>버튼</button>
-      <div className="list">
-        <h3>{ gangnam } <span onClick={ClickHandler}>👍</span> {count}</h3>
-        <p>2월 17일 발행</p>
-        <hr/>
-      </div>
-      <div className="list">
-        <h3>{ gandong }</h3>
-        <p>2월 17일 발행</p>
-        <hr/>
-      </div>
-      <div className="list">
-        <h3 >{ gangbok }</h3>
-        <p>2월 17일 발행</p>
-        <hr/>
-      </div>
-      <div>
+    {
+      gangnam.map(function (e, i) {
+        return(
+          <div className="list">
+          <h3 onClick={()=>{setclickName(i)}} > {e}<span onClick={ClickHandler}>👍</span>
+          {count}</h3>
+          <p>2월 18일 발행</p>
+          <hr />
+        </div>
+        )
+      })
+    }
+
+    {/* <button onClick={()=>{setclickName(0)}}>버튼1</button>
+    <button onClick={()=>{setclickName(1)}}>버튼2</button>
+    <button onClick={()=>{setclickName(2)}}>버튼3</button> */}
+
+
+
       <button onClick={ changeModal }> 열고닫는버튼 </button>
     {
       modal === true 
-      ? <Modal />
+      ? <Modal gangnam={gangnam} clickName={clickName}></Modal>
       : null
     }
-      </div>
+
     </div>
   );
 }
 
-function Modal() {
+function Modal(props) {
   return(
     <>
       <div className="modal">
-        <h2>제목</h2>
+        <h2>제목 {props.gangnam[props.clickName]}</h2>
         <p>날짜</p>
         <p>상세내용</p>
       </div>
