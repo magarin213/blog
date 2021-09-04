@@ -20,9 +20,7 @@ function App() {
     setGangnam(newArray);
   }
 
-  const onClickChang = () => {
-    setModal(true)
-  }
+  const changeModal = ()=>{ setModal(!modal) }
 
   return (
     <div className="App">
@@ -41,16 +39,18 @@ function App() {
         <hr/>
       </div>
       <div className="list">
-        <h3 onClick={onClickChang}>{ gangbok }</h3>
+        <h3 >{ gangbok }</h3>
         <p>2월 17일 발행</p>
         <hr/>
       </div>
+      <div>
+      <button onClick={ changeModal }> 열고닫는버튼 </button>
     {
-      modal === true
-      ? <Modal/>
+      modal === true 
+      ? <Modal />
       : null
     }
-
+      </div>
     </div>
   );
 }
