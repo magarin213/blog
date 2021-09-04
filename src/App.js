@@ -5,19 +5,14 @@ import './App.css';
 function App() {
 
   const [gangnam, setGangnam] = useState(['남자코트 추천', '강남 우동맛집', '파이썬독학']);
-
   const [count, setCount] = useState(0)
   const [modal, setModal] = useState(false)
   const [clickName, setclickName] = useState(0)
+  const [inputChange, setInputChange] = useState("")
+  const [changeStatet, setchangeStatet] = useState("");
 
   const ClickHandler = () => {
     setCount(count + 1)
-  }
-
-  const changHandler = () => {
-    let newArray = [...gangnam];
-    newArray[0] = "잠실"
-    setGangnam(newArray);
   }
 
   const changeModal = ()=>{ setModal(!modal) }
@@ -30,7 +25,7 @@ function App() {
     {
       gangnam.map(function (e, i) {
         return(
-          <div className="list">
+          <div key={i} className="list">
           <h3 onClick={()=>{setclickName(i)}} > {e}<span onClick={ClickHandler}>👍</span>
           {count}</h3>
           <p>2월 18일 발행</p>
@@ -40,13 +35,17 @@ function App() {
       })
     }
 
-    {/* <button onClick={()=>{setclickName(0)}}>버튼1</button>
-    <button onClick={()=>{setclickName(1)}}>버튼2</button>
-    <button onClick={()=>{setclickName(2)}}>버튼3</button> */}
-
-
+<div className="publish">
+        <input onChange={(e)=>{setchangeStatet(e.target.value)}} />
+        <button onClick={()=>{
+          let gangnamCopy = [...gangnam]
+          gangnamCopy.unshift(changeStatet);
+          setGangnam(gangnamCopy);
+        }}>저장</button>
+      </div>
 
       <button onClick={ changeModal }> 열고닫는버튼 </button>
+
     {
       modal === true 
       ? <Modal gangnam={gangnam} clickName={clickName}></Modal>
