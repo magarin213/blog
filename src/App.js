@@ -8,7 +8,7 @@ function App() {
   const [gandong, setGandong] = useState("강동")
   const [gangbok, setgangbok] = useState("강북")
   const [count, setCount] = useState(0)
-
+  const [modal, setModal] = useState(false)
 
   const ClickHandler = () => {
     setCount(count + 1)
@@ -18,6 +18,10 @@ function App() {
     let newArray = [...gangnam];
     newArray[0] = "잠실"
     setGangnam(newArray);
+  }
+
+  const onClickChang = () => {
+    setModal(true)
   }
 
   return (
@@ -37,12 +41,15 @@ function App() {
         <hr/>
       </div>
       <div className="list">
-        <h3>{ gangbok }</h3>
+        <h3 onClick={onClickChang}>{ gangbok }</h3>
         <p>2월 17일 발행</p>
         <hr/>
       </div>
-
-    <Modal/>
+    {
+      modal === true
+      ? <Modal/>
+      : null
+    }
 
     </div>
   );
